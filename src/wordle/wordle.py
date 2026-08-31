@@ -36,5 +36,6 @@ def main() -> None:
                 Current_streak : {history.current_streak}
                 Best_streak    : {history.best_streak}"""
             )
+    
 if __name__ == "__main__":
     main()
