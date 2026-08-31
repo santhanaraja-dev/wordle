@@ -1,0 +1,15 @@
+[project]
+name = "wordle"
+version = "0.1.0"
+description = "A command-line Wordle game"
+requires-python = ">=3.10"
+
+[dependency-groups]
+dev = [
+    "pytest==9.1.1",
+    "ruff==0.16.5",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]

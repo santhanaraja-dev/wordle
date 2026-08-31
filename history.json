@@ -1,0 +1,42 @@
+[
+    {
+        "won": true,
+        "attempts": 3,
+        "word": "chair"
+    },
+    {
+        "won": true,
+        "attempts": 2,
+        "word": "grape"
+    },
+    {
+        "won": true,
+        "attempts": 2,
+        "word": "tiger"
+    },
+    {
+        "won": false,
+        "attempts": 6,
+        "word": "money"
+    },
+    {
+        "won": true,
+        "attempts": 3,
+        "word": "table"
+    },
+    {
+        "won": true,
+        "attempts": 2,
+        "word": "beach"
+    },
+    {
+        "won": false,
+        "attempts": 6,
+        "word": "money"
+    },
+    {
+        "won": true,
+        "attempts": 3,
+        "word": "green"
+    }
+]
