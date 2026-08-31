@@ -1,6 +1,9 @@
 # Virtual environment
 .venv/
 
+# Runtime data
+history.json
+
 # Python cache
 __pycache__/
 *.py[cod]
