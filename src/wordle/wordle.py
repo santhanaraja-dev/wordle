@@ -14,13 +14,14 @@ def main() -> None:
     history = GameHistory()
 
     while not game.is_over:
-        print(game)
         guess = input(f'Enter Your Guess Word of length {WORD_LENGTH} : ')
         try:
             game.make_guess(guess)
         except ValueError as error:
             print(error)
-        print(game)
+        else:
+            print(game)
+    
     if game.is_won:
         print(f'Congratulations!!! You got it in {len(game.guesses)}/{MAX_GUESSES}!')
     else:
@@ -28,12 +29,12 @@ def main() -> None:
 
     history.record_game(game.is_won, len(game.guesses), secret_word)
 
-    print(f"""************** Your_Stats *****************
-            Total_games : {history.total_games}
-            Total_wins : {history.total_wins}
-            Win_percentage : {round(history.win_percentage,2)}%
-            Current_streak : {history.current_streak}
-            Best_streak : {history.best_streak}"""
+    print(f"""******************* Your_Stats ***********************
+                Total_games    : {history.total_games}
+                Total_wins     : {history.total_wins}
+                Win_percentage : {round(history.win_percentage,2)}%
+                Current_streak : {history.current_streak}
+                Best_streak    : {history.best_streak}"""
             )
 if __name__ == "__main__":
     main()

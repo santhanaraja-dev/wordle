@@ -48,5 +48,30 @@
         "won": true,
         "attempts": 6,
         "word": "dream"
+    },
+    {
+        "won": true,
+        "attempts": 4,
+        "word": "candy"
+    },
+    {
+        "won": true,
+        "attempts": 3,
+        "word": "apple"
+    },
+    {
+        "won": true,
+        "attempts": 3,
+        "word": "pizza"
+    },
+    {
+        "won": true,
+        "attempts": 3,
+        "word": "house"
+    },
+    {
+        "won": true,
+        "attempts": 2,
+        "word": "smile"
     }
 ]
