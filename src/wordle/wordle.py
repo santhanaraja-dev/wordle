@@ -20,7 +20,7 @@ def main() -> None:
             game.make_guess(guess)
         except ValueError as error:
             print(error)
-    print(game)
+        print(game)
     if game.is_won:
         print(f'Congratulations!!! You got it in {len(game.guesses)}/{MAX_GUESSES}!')
     else:
@@ -31,7 +31,7 @@ def main() -> None:
     print(f"""************** Your_Stats *****************
             Total_games : {history.total_games}
             Total_wins : {history.total_wins}
-            Win_percentage : {history.win_percentage}%
+            Win_percentage : {round(history.win_percentage,2)}%
             Current_streak : {history.current_streak}
             Best_streak : {history.best_streak}"""
             )
