@@ -2,67 +2,77 @@
 
 import json
 
-HISTORY_FILE = "history.json"
+HISTORY_FILE = "history.jsonl"
+
 
 class GameHistory:
     """Store completed games and calculate player statistics."""
+
     def __init__(self) -> None:
+        self.games = []
+
         try:
             with open(HISTORY_FILE, "r") as f:
-                self.games = json.load(f)
+                for line in f:
+                    if line.strip():
+                        self.games.append(json.loads(line))
 
         except FileNotFoundError:
-            self.games = []
-            with open(HISTORY_FILE,'w') as f:
-                json.dump(self.games, f, indent = 4)
+            pass
 
-    def save(self) -> None:
-        with open(HISTORY_FILE,'w') as f:
-            json.dump(self.games, f, indent = 4)
+    def record_game(self,won: bool,attempts: int,word: str,) -> None:
+        """Append a completed game to the history file."""
 
-    def record_game(self, won: bool, attempts: int, word: str) -> None:
-        self.games.append({
-        "won": won,
-        "attempts": attempts,
-        "word": word
-        })
-        self.save()
+        game = {
+            "won": won,
+            "attempts": attempts,
+            "word": word,
+        }
+
+        # Keep the current session's history in memory
+        self.games.append(game)
+
+        # Append only the new game to the file
+        with open(HISTORY_FILE, "a") as f:
+            json.dump(game, f)
+            f.write("\n")
 
     @property
     def total_games(self) -> int:
-        return  len(self.games)
-        
+        """Return the total number of games played."""
+        return len(self.games)
+
     @property
     def total_wins(self) -> int:
-        count = 0
-
-        for rec in self.games:
-            if rec["won"] == True:
-                count += 1
-        return count
+        """Return the total number of games won."""
+        return sum(rec["won"] for rec in self.games)
 
     @property
     def win_percentage(self) -> float:
+        """Return the percentage of games won."""
+
         if self.total_games == 0:
-            return 0
-        
+            return 0.0
+
         return (self.total_wins / self.total_games) * 100
 
     @property
     def current_streak(self) -> int:
+        """Return the current winning streak."""
+
         count = 0
-        if not self.games:
-           return 0
 
         for rec in reversed(self.games):
-            if rec["won"]:
-               count += 1
             if not rec["won"]:
-               break  
-        return count             
+                break
+
+            count += 1
+
+        return count
 
     @property
     def best_streak(self) -> int:
+        """Return the longest winning streak."""
 
         count = 0
         best = 0
@@ -70,11 +80,8 @@ class GameHistory:
         for rec in self.games:
             if rec["won"]:
                 count += 1
-
-            if not rec["won"]:
-                best = max(best,count)
+                best = max(best, count)
+            else:
                 count = 0
-
-        best = max(best,count)
 
         return best
