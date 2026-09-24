@@ -53,6 +53,9 @@ class Game:
 
         if word not in self.word_list:
             raise ValueError("Your guess is not in the word list.")
+
+        if any(guess.word == word for guess in self.guesses):
+            raise ValueError("You have already guessed this word.")
         
         guess_result = self.evaluate_guess(word)
         self.guesses.append(guess_result)
